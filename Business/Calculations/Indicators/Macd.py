@@ -12,7 +12,7 @@ def calculate_signal_line(macd_line: pd.Series) -> pd.Series:
     return macd_line.ewm(span=9, adjust=False).mean()
 
 
-def get_indication(macd_line: pd.Series, signal_line: pd.Series) -> SIGNAL_TYPES:
+def get_macd_indication(macd_line: pd.Series, signal_line: pd.Series) -> SIGNAL_TYPES:
     if macd_line[-1] > signal_line[-1]:
         return SIGNAL_TYPES.BUY
     else:

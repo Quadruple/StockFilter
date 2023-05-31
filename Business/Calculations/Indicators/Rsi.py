@@ -1,4 +1,5 @@
 import pandas as pd
+from Business.Data.SignalTypes import SIGNAL_TYPES
 
 
 def calculate_close_price_differences(close_prices: pd.Series) -> pd.Series:
@@ -25,3 +26,9 @@ def calculate_relative_strength(up_ewm: pd.Series, down_ewm: pd.Series) -> pd.Se
 
 def calculate_rsi(relative_strength: pd.Series) -> pd.Series:
     return 100.0 - (100.0 / (1.0 + relative_strength))
+
+
+def get_rsi_indication(rsi: pd.Series) -> SIGNAL_TYPES:
+    if rsi.tail(1).item() < 40:
+        return SIGNAL_TYPES.BUY
+    return SIGNAL_TYPES.SELL
