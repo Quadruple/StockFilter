@@ -29,6 +29,12 @@ def calculate_rsi(relative_strength: pd.Series) -> pd.Series:
 
 
 def get_rsi_indication(rsi: pd.Series) -> SIGNAL_TYPES:
-    if rsi.tail(1).item() < 40:
+    last_rsi = rsi.tolist()[-1]
+    previous_rsi = rsi.tolist()[-2]
+    if last_rsi > 70:
+        return SIGNAL_TYPES.SELL
+    if last_rsi < 30:
+        return SIGNAL_TYPES.BUY
+    if previous_rsi < last_rsi < 60:
         return SIGNAL_TYPES.BUY
     return SIGNAL_TYPES.SELL
