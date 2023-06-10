@@ -18,10 +18,10 @@ def is_macd_gives_buy_signal(close_data: pd.Series) -> bool:
             calculate_macd_line(close_data)
         )
     ) == SIGNAL_TYPES.BUY and is_macd_switched_to_buy_recently(
-        calculate_macd_line(close_data),
+        calculate_macd_line(close_data)[-5:],
         calculate_signal_line(
             calculate_macd_line(close_data)
-        )
+        )[-5:]
     )
 
 
@@ -51,5 +51,4 @@ def analyze(stock_names: list[str]) -> None:
     analyze(stock_names)
 
 
-bist_100_stock_names = transform_bist_stock_names_into_yahoo_format(fetch_stocks_under_bist_100_from_tradingview())
-analyze(bist_100_stock_names)
+analyze(transform_bist_stock_names_into_yahoo_format(fetch_stocks_under_bist_100_from_tradingview()))

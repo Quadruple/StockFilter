@@ -19,10 +19,11 @@ def get_macd_indication(macd_line: pd.Series, signal_line: pd.Series) -> SIGNAL_
         return SIGNAL_TYPES.SELL
 
 
-def is_macd_switched_to_buy_recently(macd_line: pd.Series, signal_line: pd.Series) -> bool:
-    last_5_days_macd = macd_line[-5:]
-    last_5_days_signal = signal_line[-5:]
-    for index in range(len(last_5_days_signal)):
-        if last_5_days_macd[index] < last_5_days_signal[index]:
-            return True
-    return False
+def is_macd_switched_to_buy_recently(last_macd: pd.Series, last_signal: pd.Series) -> bool:
+    if last_macd.empty or last_signal.empty:
+        return False
+    if last_macd[0] < last_signal[0]:
+        return True
+    last_macd = last_macd.drop(last_macd.index[0])
+    last_signal = last_signal.drop(last_signal.index[0])
+    return is_macd_switched_to_buy_recently(last_macd, last_signal)
