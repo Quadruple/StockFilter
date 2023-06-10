@@ -20,8 +20,8 @@ def calculate_ewm(differences: pd.Series) -> tuple[pd.Series, pd.Series]:
         pd.Series(down_ewm).abs().ewm(com=13, adjust=False).mean()
 
 
-def calculate_relative_strength(up_ewm: pd.Series, down_ewm: pd.Series) -> pd.Series:
-    return up_ewm / down_ewm
+def calculate_relative_strength(ewms: tuple[pd.Series, pd.Series]) -> pd.Series:
+    return ewms[0] / ewms[1]
 
 
 def calculate_rsi(relative_strength: pd.Series) -> pd.Series:
