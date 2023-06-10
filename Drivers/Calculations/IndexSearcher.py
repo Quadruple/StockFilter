@@ -8,4 +8,4 @@ def fetch_stocks_under_bist_100_from_tradingview() -> list[str]:
     soup = BeautifulSoup(page.text, 'lxml')
     table = soup.find("table")
     rows = table.findAll("a", {"class": "apply-common-tooltip tickerNameBox-GrtoTeat tickerName-GrtoTeat"})
-    return [row.string for row in rows]
+    return list(map(lambda row: row.string, rows))
