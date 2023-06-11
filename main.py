@@ -7,6 +7,7 @@ from Business.Calculations.Indicators.Macd import calculate_macd_line, calculate
     is_macd_switched_to_buy_recently
 from Business.Calculations.Indicators.Rsi import calculate_rsi, calculate_ewm, calculate_relative_strength, \
     calculate_close_price_differences, get_rsi_indication
+from Business.Calculations.Indicators.BollingerBands import get_lower_bollinger_band, get_upper_bollinger_band
 
 
 def is_macd_gives_buy_signal(close_data: pd.Series) -> bool:
