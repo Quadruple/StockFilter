@@ -7,7 +7,8 @@ from Business.Calculations.Indicators.Macd import calculate_macd_line, calculate
     is_macd_switched_to_buy_recently
 from Business.Calculations.Indicators.Rsi import calculate_rsi, calculate_ewm, calculate_relative_strength, \
     calculate_close_price_differences, get_rsi_indication
-from Business.Calculations.Indicators.BollingerBands import get_lower_bollinger_band, get_upper_bollinger_band
+from Business.Calculations.Indicators.BollingerBands import get_lower_bollinger_band, get_upper_bollinger_band, \
+    get_bollinger_indication
 
 
 def is_macd_gives_buy_signal(close_data: pd.Series) -> bool:
@@ -42,11 +43,20 @@ def is_rsi_gives_buy_signal(close_data: pd.Series) -> bool:
     ) == SIGNAL_TYPES.BUY
 
 
+def is_bollinger_gives_buy_signal(close_data: pd.Series) -> bool:
+    return get_bollinger_indication(
+        close_data,
+        get_upper_bollinger_band(close_data, 20, 2),
+        get_lower_bollinger_band(close_data, 20, 2)
+    )
+
+
 def analyze(stock_names: list[str]) -> None:
     if not stock_names:
         return
     if is_macd_gives_buy_signal(get_daily_stock_data(get_stock(stock_names[0]), year_span=1)["Close"]) and \
-            is_rsi_gives_buy_signal(get_daily_stock_data(get_stock(stock_names[0]), year_span=1)["Close"]):
+            is_rsi_gives_buy_signal(get_daily_stock_data(get_stock(stock_names[0]), year_span=1)["Close"]) and \
+            is_bollinger_gives_buy_signal(get_daily_stock_data(get_stock(stock_names[0]), year_span=1)["Close"]):
         print(stock_names[0])
     stock_names.pop(0)
     analyze(stock_names)
