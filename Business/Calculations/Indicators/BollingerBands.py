@@ -11,7 +11,6 @@ def get_lower_bollinger_band(close_prices: pd.Series, period: int, multiplier: i
 
 
 def get_bollinger_indication(close_prices: pd.Series, upper_band: pd.Series, lower_band: pd.Series) -> SIGNAL_TYPES:
-    # TODO: Bollinger indication needs conditions for trend following.
     if close_prices[-1] <= lower_band[-1]:
         return SIGNAL_TYPES.BUY
     if close_prices[-1] >= upper_band[-1]:
