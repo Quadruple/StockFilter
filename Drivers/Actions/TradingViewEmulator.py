@@ -7,7 +7,7 @@ from selenium.common.exceptions import NoSuchElementException
 
 def get_firefox_options() -> Options:
     options = Options()
-    options.headless = False
+    options.headless = True
     return options
 
 
