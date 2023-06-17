@@ -1,7 +1,8 @@
 import pandas as pd
+from Adapters.Calculations.IndexOperationsAdapter import scrape_component_names_under_index, transform_stock_names
+from Adapters.Calculations.EmulationAdapter import get_browser_options, get_web_driver,\
+    emulate_click_on_load_more_button, open_url_in_driver, get_url_to_scrape_components
 from Business.Data.SignalTypes import SIGNAL_TYPES
-from Drivers.Calculations.IndexSearcher import fetch_stocks_under_bist_100_from_tradingview
-from Drivers.Actions.StockFormatter import transform_bist_stock_names_into_yahoo_format
 from Drivers.Calculations.StockInfoFetcher import get_stock, get_daily_stock_data
 from Business.Calculations.Indicators.Macd import calculate_macd_line, calculate_signal_line, get_macd_indication, \
     is_macd_switched_to_buy_recently
@@ -62,4 +63,17 @@ def analyze(stock_names: list[str]) -> None:
     analyze(stock_names)
 
 
-analyze(transform_bist_stock_names_into_yahoo_format(fetch_stocks_under_bist_100_from_tradingview()))
+analyze(
+    transform_stock_names(
+        scrape_component_names_under_index(
+            emulate_click_on_load_more_button(
+                open_url_in_driver(
+                    get_url_to_scrape_components(),
+                    get_web_driver(
+                        get_browser_options()
+                    )
+                )
+            )
+        )
+    )
+)

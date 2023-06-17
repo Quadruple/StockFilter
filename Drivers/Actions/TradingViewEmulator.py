@@ -11,11 +11,11 @@ def get_firefox_options() -> Options:
     return options
 
 
-def get_firefox_web_driver(options: Options):
+def get_firefox_web_driver(options: Options) -> selenium.webdriver.firefox.webdriver.WebDriver:
     return webdriver.Firefox(options=options)
 
 
-def open_url_in_driver(url: str, web_driver: selenium.webdriver.firefox.webdriver.WebDriver) \
+def open_url_in_firefox_driver(url: str, web_driver: selenium.webdriver.firefox.webdriver.WebDriver) \
         -> selenium.webdriver.firefox.webdriver.WebDriver:
     web_driver.get(url)
     return web_driver
