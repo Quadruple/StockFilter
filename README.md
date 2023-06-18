@@ -26,9 +26,9 @@ math heavy indicators and analysis methods, I have chosen Python.</h5>
 
 <h3>Current Objectives</h3>
 <ul>
-<li>Increasing technical indicators (Currently only MACD is implemented)</li>
+<li>Increasing technical indicators (Currently MACD/RSI/Bollinger Bands)</li>
 <li>Introducing fundamental analysis techniques</li>
 <li>Converting the functions of indicators into more parameterized versions</li>
-<li>Parameterizing the indices so other indices can be analyzed as well. (Currently XU100 only)</li>
 <li>Introducing parallelism to the whole filtering process to reduce time consumption</li>
+<li>Introducing sell potentials (Currently only buy potentials are listed)</li>
 </ul>
