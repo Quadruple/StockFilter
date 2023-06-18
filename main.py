@@ -1,8 +1,8 @@
 import pandas as pd
-from Adapters.Calculations.IndexOperationsAdapter import scrape_component_names_under_index, transform_stock_names
-from Adapters.Calculations.EmulationAdapter import get_browser_options, get_web_driver,\
+from adapters.calculations.IndexOperationsAdapter import scrape_component_names_under_index, transform_stock_names
+from adapters.calculations.EmulationAdapter import get_browser_options, get_web_driver,\
     emulate_click_on_load_more_button, open_url_in_driver, get_url_to_scrape_components
-from Adapters.Calculations.StockInfoAdapter import get_stock, get_daily_stock_data
+from adapters.calculations.StockInfoAdapter import get_stock, get_daily_stock_data
 from Business.Data.SignalTypes import SIGNAL_TYPES
 from Business.Calculations.Indicators.Macd import calculate_macd_line, calculate_signal_line, get_macd_indication, \
     is_macd_switched_to_buy_recently
