@@ -4,7 +4,7 @@ The received data contains features like Close Prices, Open Prices, Volume etc.
 """
 import pandas as pd
 import yfinance as yf
-from Drivers.Calculations.StockInfoFetcher import get_stock_from_yahoo, \
+from drivers.calculations.StockInfoFetcher import get_stock_from_yahoo, \
     get_daily_stock_data_from_yahoo
 
 

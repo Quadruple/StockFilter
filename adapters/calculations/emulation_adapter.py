@@ -5,9 +5,9 @@ This module emulates clicking on those buttons to make sure that all data is ava
 """
 from selenium.webdriver.firefox.webdriver import WebDriver
 from selenium.webdriver.firefox.options import Options
-from Drivers.Actions.TradingViewEmulator import get_firefox_options, get_firefox_web_driver, \
+from drivers.actions.TradingViewEmulator import get_firefox_options, get_firefox_web_driver, \
     open_url_in_firefox_driver, emulate_loading_all_stocks_in_trading_view
-from Drivers.Data.WebScrapingData import trading_view_url, index_to_analyze, index_name_prefix
+from drivers.data.WebScrapingData import trading_view_url, index_to_analyze, index_name_prefix
 
 
 def get_url_to_scrape_components() -> str:
