@@ -3,12 +3,12 @@ from adapters.calculations.IndexOperationsAdapter import scrape_component_names_
 from adapters.calculations.EmulationAdapter import get_browser_options, get_web_driver,\
     emulate_click_on_load_more_button, open_url_in_driver, get_url_to_scrape_components
 from adapters.calculations.StockInfoAdapter import get_stock, get_daily_stock_data
-from Business.Data.SignalTypes import SIGNAL_TYPES
-from Business.Calculations.Indicators.Macd import calculate_macd_line, calculate_signal_line, get_macd_indication, \
+from business.data.SignalTypes import SIGNAL_TYPES
+from business.calculations.indicators.Macd import calculate_macd_line, calculate_signal_line, get_macd_indication, \
     is_macd_switched_to_buy_recently
-from Business.Calculations.Indicators.Rsi import calculate_rsi, calculate_ewm, calculate_relative_strength, \
+from business.calculations.indicators.Rsi import calculate_rsi, calculate_ewm, calculate_relative_strength, \
     calculate_close_price_differences, get_rsi_indication
-from Business.Calculations.Indicators.BollingerBands import get_lower_bollinger_band, get_upper_bollinger_band, \
+from business.calculations.indicators.BollingerBands import get_lower_bollinger_band, get_upper_bollinger_band, \
     get_bollinger_indication
 
 
