@@ -1,1 +1,1 @@
-yahoo_country_code = ""
+yahoo_country_code = ".IS"

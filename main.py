@@ -4,7 +4,7 @@ from adapters.calculations.index_operations_adapter import scrape_component_name
     transform_stock_names
 from adapters.calculations.emulation_adapter import get_browser_options, get_web_driver,\
     emulate_click_on_load_more_button, open_url_in_driver, get_url_to_scrape_components
-from adapters.calculations.stock_info_adapter import get_stock, get_daily_stock_data
+from adapters.calculations.stock_info_adapter import get_stock, get_stock_data
 from business.data.signal_types import SIGNAL_TYPES
 from business.calculations.indicators.macd import calculate_macd_line, \
     calculate_signal_line, get_macd_indication, is_macd_switched_to_buy_recently
@@ -13,6 +13,8 @@ from business.calculations.indicators.rsi import calculate_rsi, \
     calculate_close_price_differences, get_rsi_indication
 from business.calculations.indicators.bollinger_bands import get_lower_bollinger_band, \
     get_upper_bollinger_band, get_bollinger_indication
+from business.calculations.dates import get_years_ago, get_today, \
+    transform_date_to_year_month_date_format
 
 
 def is_macd_gives_buy_signal(close_data: pd.Series) -> bool:
@@ -66,11 +68,26 @@ def analyze(stock_names: list[str]) -> None:
     if not stock_names:
         return
     if is_macd_gives_buy_signal(
-            get_daily_stock_data(get_stock(stock_names[0]), year_span=1)["Close"]
+        get_stock_data(
+            get_stock(stock_names[0]),
+            "1d",
+            transform_date_to_year_month_date_format(get_years_ago(1)),
+            transform_date_to_year_month_date_format(get_today())
+        )["Close"]
     ) and is_rsi_gives_buy_signal(
-        get_daily_stock_data(get_stock(stock_names[0]), year_span=1)["Close"]
+        get_stock_data(
+            get_stock(stock_names[0]),
+            "1d",
+            transform_date_to_year_month_date_format(get_years_ago(1)),
+            transform_date_to_year_month_date_format(get_today())
+        )["Close"]
     ) and is_bollinger_gives_buy_signal(
-        get_daily_stock_data(get_stock(stock_names[0]), year_span=1)["Close"]
+        get_stock_data(
+            get_stock(stock_names[0]),
+            "1d",
+            transform_date_to_year_month_date_format(get_years_ago(1)),
+            transform_date_to_year_month_date_format(get_today())
+        )["Close"]
     ):
         print(stock_names[0])
     stock_names.pop(0)
