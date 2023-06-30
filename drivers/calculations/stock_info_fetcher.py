@@ -5,8 +5,6 @@ such as fetching a stocks data.
 """
 import yfinance as yf
 import pandas as pd
-from drivers.calculations.dates import get_today, get_years_ago, \
-    transform_date_to_year_month_date_format
 
 
 def get_stock_from_yahoo(stock_name: str) -> yf.Ticker:
@@ -14,10 +12,12 @@ def get_stock_from_yahoo(stock_name: str) -> yf.Ticker:
     return yf.Ticker(stock_name)
 
 
-def get_daily_stock_data_from_yahoo(ticker: yf.Ticker, year_span: int) -> pd.DataFrame:
-    """ Function for getting the daily historical data from year_span years ago till today. """
+def get_stock_data_from_yahoo(
+        ticker: yf.Ticker, period: str, start_date: str, end_date: str
+) -> pd.DataFrame:
+    """ Function for getting the historical data of a stock from Yahoo Finance API. """
     return ticker.history(
-        period="1d",
-        start=transform_date_to_year_month_date_format(get_years_ago(year_span)),
-        end=transform_date_to_year_month_date_format(get_today())
+        period=period,
+        start=start_date,
+        end=end_date
     )

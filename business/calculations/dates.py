@@ -16,6 +16,11 @@ def get_years_ago(years: int) -> datetime:
     return datetime.today() - relativedelta(years=years)
 
 
+def get_days_ago(days: int) -> datetime:
+    """ Function for obtaining the date of given days ago. """
+    return datetime.today() - relativedelta(days=days)
+
+
 def transform_date_to_year_month_date_format(date: datetime) -> str:
     """ Function for formatting the given date into year-month-day format string. """
     return date.strftime("%Y-%m-%d")
