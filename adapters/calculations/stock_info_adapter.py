@@ -13,6 +13,6 @@ def get_stock(stock_name: str) -> yf.Ticker:
     return get_stock_from_yahoo(stock_name)
 
 
-def get_stock_data(ticker: yf.Ticker, period: str, start_date: str, end_date: str) -> pd.DataFrame:
+def get_stock_data(ticker: yf.Ticker, interval: str, start_date: str, end_date: str) -> pd.DataFrame:
     """ Abstraction of getting historical data of a stock. """
-    return get_stock_data_from_yahoo(ticker, period, start_date, end_date)
+    return get_stock_data_from_yahoo(ticker, interval, start_date, end_date)

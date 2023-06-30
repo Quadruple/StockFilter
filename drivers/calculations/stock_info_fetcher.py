@@ -13,11 +13,11 @@ def get_stock_from_yahoo(stock_name: str) -> yf.Ticker:
 
 
 def get_stock_data_from_yahoo(
-        ticker: yf.Ticker, period: str, start_date: str, end_date: str
+        ticker: yf.Ticker, interval: str, start_date: str, end_date: str
 ) -> pd.DataFrame:
     """ Function for getting the historical data of a stock from Yahoo Finance API. """
     return ticker.history(
-        period=period,
+        interval=interval,
         start=start_date,
         end=end_date
     )
